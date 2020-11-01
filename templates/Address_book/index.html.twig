@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PhoneBookController!{% endblock %}
+    {% block menu %}
+        {{ include('Menu.html.twig', { 'backgroundColor': 'violet' }) }}
+    {% endblock  %}
+
+{% block body %}
+{#{{ dump(pagination) }}#}
+<div class="container">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>Lastname </th>
+            <th>Birthday</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        {% for addressBook in pagination %}
+            <tr>
+                <td>{{ addressBook.id }}</td>
+                <td>{{ addressBook.firstname }}</td>
+                <td>{{ addressBook.lastname }}</td>
+                <td>{{ addressBook.birthday|date("m/d/Y") }}</td>
+                <td>{{ addressBook.email }}</td>
+
+                <td>
+                    <a class="btn btn-info btn-sm showdata addressid" data-toggle="modal" data-target="#myModal" href="#" address-book-id="{{ addressBook.id }}">Detail</a>
+                    <a class="btn btn-info btn-sm showdata" href="{{ path('edit_address_book', {id: addressBook.id }) }}">Edit</a>
+                    <a class="btn btn-info btn-sm showdata" onclick="return confirm('Are you sure?')"  href="{{ path('delete_address_book', {id: addressBook.id }) }}">Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Phone Book</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    {{ include('Address_book/modal.html.twig') }}
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script language="JavaScript">
+
+        $(document).ready(function() {
+
+            $( ".addressid" ).click(function() {
+                let id=$(this).attr( "address-book-id" );
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: '/detail/'+id,
+                    success: function (resultData) {
+                        console.log()
+                        $( "#firstname" ).html(resultData.firstname);
+                        $( "#lastname" ).html(resultData.lastname);
+                        $( "#street_number" ).html(resultData.street_number);
+                        $( "#zip" ).html(resultData.zip);
+                        $( "#city" ).html(resultData.city);
+                        $( "#country" ).html(resultData.country);
+                        $( "#birthday" ).html(resultData.birthday);
+                        $( "#phonenumber" ).html(resultData.phonenumber);
+                        $( "#email" ).html(resultData.email);
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+    </script>
+{% endblock  %}
+
+
