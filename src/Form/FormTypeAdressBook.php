@@ -35,8 +35,8 @@ class FormTypeAdressBook extends AbstractType
                 new Length([
                     'min' => '3',
                     'max'=> '30',
-                    'minMessage' => ' Firstname must be more than  {{ limit }} char ',
-                    'maxMessage' => ' Firstname must be less than  {{ limit }} char '
+                    'minMessage' => 'Firstname must be more than  {{ limit }} char',
+                    'maxMessage' => 'Firstname must be less than  {{ limit }} char'
                 ])
             ]])
             ->add('lastname',TextType::class,['label' => 'Last Name','attr' => ['class' => 'form-control'],'mapped' => true,'constraints' => [
@@ -44,8 +44,8 @@ class FormTypeAdressBook extends AbstractType
                 new Length([
                     'min' => '3',
                     'max'=> '30',
-                    'minMessage' => ' Lastname must be more than  {{ limit }} char ',
-                    'maxMessage' => ' Lastname must be less than  {{ limit }} char '
+                    'minMessage' => 'Lastname must be more than  {{ limit }} char ',
+                    'maxMessage' => 'Lastname must be less than  {{ limit }} char'
                 ])
             ]])
             ->add('street_number',NumberType::class,['label' => 'Street Number','attr' => ['class' => 'form-control'],'mapped' => true,'constraints' => [
@@ -53,8 +53,8 @@ class FormTypeAdressBook extends AbstractType
                 new Length([
                     'min' => '1',
                     'max'=> '5',
-                    'minMessage' => ' Street Number must be more than  {{ limit }} number ',
-                    'maxMessage' => ' Street Number must be less than  {{ limit }} number '
+                    'minMessage' => 'Street Number must be more than  {{ limit }} number',
+                    'maxMessage' => 'Street Number must be less than  {{ limit }} number'
                 ])
             ]])
             ->add('zip',NumberType::class,['label' => 'Zip','attr' => ['class' => 'form-control'],'mapped' => true,'constraints' => [
@@ -69,8 +69,8 @@ class FormTypeAdressBook extends AbstractType
                 new Length([
                     'min' => '10',
                     'max' => '12',
-                    'minMessage' => ' phonenumber must be more than  {{ limit }} number ',
-                    'maxMessage' => ' phonenumber must be less than  {{ limit }} number '
+                    'minMessage' => 'phonenumber must be more than  {{ limit }} number',
+                    'maxMessage' => 'phonenumber must be less than  {{ limit }} number'
                 ])
             ]])
             ->add('birthday',DateType::class,[ 'widget' => 'single_text','label' => 'Birthday','attr' => ['class' => 'form-control'],'mapped' => true,'constraints' => [

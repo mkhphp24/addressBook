@@ -26,7 +26,7 @@ namespace App\Controller;
             $addressBookService = new AdressBookService($this->getDoctrine()->getManager(), AddressBooks::class);
             $addressBooks = $addressBookService->getDataPaginationAdressBook();
             $pagination = $paginator->paginate($addressBooks, /* query NOT result */ $request->query->getInt('page', 1), /*page number*/ self::LIMIT /*limit per page*/);
-            return $this->render('Address_book/index.html.twig', ['pagination' => $pagination]);
+            return $this->render('address_book/index.html.twig', ['pagination' => $pagination]);
         }
 
         //========================================== INSERT
@@ -52,7 +52,7 @@ namespace App\Controller;
                 }
 
             }
-            return $this->render('Address_book/Insert.html.twig', ["form" => $form->createView()]);
+            return $this->render('address_book/Insert.html.twig', ["form" => $form->createView()]);
         }
 
         //========================================== Edit
@@ -79,7 +79,7 @@ namespace App\Controller;
                 }
 
             }
-            return $this->render('Address_book/Edit.html.twig', ["form" => $form->createView()]);
+            return $this->render('address_book/edit.html.twig', ["form" => $form->createView()]);
 
         }
 

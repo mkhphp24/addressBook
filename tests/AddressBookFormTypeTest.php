@@ -76,7 +76,7 @@
         private function returnErrorfield( $HtmlValueError ){
             $result=['count'=>0,'message'=>[]];
             foreach ($HtmlValueError as $domElement) {
-                if(trim($domElement->nodeValue) === '')  continue;
+                if($domElement->nodeValue === '')  continue;
                 $result['count']++;
                 $result['message'][$domElement->getAttribute('for')]=$domElement->nodeValue;
             }
